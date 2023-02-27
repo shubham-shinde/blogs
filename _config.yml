@@ -6,13 +6,14 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Title
-description: description ❤
+title: Kaizen's Blogs
+description: Starting a new era
 github_username: shubham-shinde
+
 
 # Email and twitter are optional:
 email: shindes0321@gmail.com
-github_username:
+kaggle_username: kaizen97
 
 # Set this to true to get LaTeX math equation support
 use_math: true

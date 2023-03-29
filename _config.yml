@@ -6,14 +6,15 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: kaizen's blogs
+title: Kaizen's
 github_username: shubham-shinde
+kaggle_username: kaizen97
 description: Starting a new era
 
+gem: [jekyll-admin]
 
 # Email and twitter are optional:
 email: shindes0321@gmail.com
-# kaggle_username: kaizen97
 
 # Set this to true to get LaTeX math equation support
 use_math: true
@@ -42,3 +43,4 @@ kramdown:
   auto_ids: true
   hard_wrap: false
   syntax_highlighter: rouge
+

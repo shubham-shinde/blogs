@@ -212,7 +212,7 @@ GEM
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
-    minitest (5.17.0)
+    minitest (5.18.0)
     multipart-post (2.3.0)
     nokogiri (1.13.10-x86_64-darwin)
       racc (~> 1.4)
@@ -273,6 +273,7 @@ DEPENDENCIES
   github-pages
   jekyll (~> 3.9)
   jekyll-feed (~> 0.12)
+  jekyll-github-metadata
   jekyll-octicons
   minima (~> 2.5)
   thin

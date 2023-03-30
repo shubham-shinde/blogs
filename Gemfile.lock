@@ -223,6 +223,8 @@ GEM
       ruby2_keywords (~> 0.0.1)
     nokogiri (1.13.10-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.10-x86_64-linux)
+      racc (~> 1.4)
     octicons (17.10.0)
     octokit (4.22.0)
       faraday (>= 0.9)
@@ -286,6 +288,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   faraday (< 1.0)

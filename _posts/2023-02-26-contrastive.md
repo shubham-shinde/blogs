@@ -21,7 +21,7 @@ apart. It is regarded as an alternative to Cross-Entropy loss.
 
 The contrastive loss function computes the distance between pairs of examples in the embedding space and then applies a penalty if the distance is greater than a certain threshold. Specifically, for a given pair of examples, the contrastive loss function calculates the Euclidean distance between their embedding vectors. If the distance is below a certain threshold, a small loss is incurred; if it is above the threshold, a larger loss is incurred. The idea is to encourage the model to learn embeddings that make similar examples closer together and dissimilar examples further apart.
 
-![](/images/contrastive_mnist_example.png "Contrastive MNIST Example")
+![]({{ site.baseurl }}/images/contrastive_mnist_example.png "Contrastive MNIST Example")
 
 ## Why MNIST Data?
 
@@ -30,7 +30,7 @@ labelling i.e. zero to nine. Images are black and white with 28 * 28 fixed
 size. The simplisity of this dataset makes it ideal for learners to do image
 classification.
 
-![](/images/mnist.webp "MNIST Example")
+![]({{ site.baseurl }}/images/mnist.webp "MNIST Example")
 
 ## Basic Setup
 
@@ -428,12 +428,12 @@ sns.heatmap(conf_m, annot=True, fmt='g', cmap='coolwarm')
 ```
 we'll get output:
 
-![](/images/confusion.png "Confustion Matrix")
+![]({{ site.baseurl }}/images/confusion.png "Confustion Matrix")
 
 ## Visualising Embeddings
 Visualising more than 3D is hard for humans. Our Model return embedding of size 64 which seems to be impossible to visualize currenly. There are few method which can be used to bring higher dimentions data into lower dimentions. One way is to use PCA (Principle Component Analysis).
 
-![](/images/visual.png "PCA Visual")
+![]({{ site.baseurl }}/images/visual.png "PCA Visual")
 
 Above is PCA of train data in 3D. We can see that embeddings are saperated by labels which verify that our model is giving distance to non similar embeddings. To verify open [link](https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/shubham-shinde/7e9d26e5dfb5325020ce00bc7799a25d/raw/730ccd5d7f70d248afd6c05182d8bf6d4be0439e/mnist_contrastive_loss_cosine_config.tsv) (in color by select labels)
 

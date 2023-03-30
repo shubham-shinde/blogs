@@ -273,7 +273,6 @@ DEPENDENCIES
   github-pages
   jekyll (~> 3.9)
   jekyll-feed (~> 0.12)
-  jekyll-github-metadata
   jekyll-octicons
   minima (~> 2.5)
   thin

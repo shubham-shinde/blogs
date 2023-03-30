@@ -1,4 +1,5 @@
 ---
+layout: post
 title: Contrastive Loss on MNIST Dataset
 ---
 
@@ -331,17 +332,17 @@ ignores the length of the vectors and only sees the angular difference. So if tw
 points are in the same line then Cosine < Euclidean.
 
 ## Getting Embedding
-What is embedding?? 
+What is embedding??
 embedding refers to the process of representing entitye (word, phrases or image) in a numerical form that can be used by machine learning algorithms for various tasks, such as text classification, sentiment analysis, and machine translation.
 
-The process involves mapping each word or phrase to a high-dimensional vector of real numbers, often referred to as an embedding vector or simply embedding. We can say it is a array of size N which describes the image. 
+The process involves mapping each word or phrase to a high-dimensional vector of real numbers, often referred to as an embedding vector or simply embedding. We can say it is a array of size N which describes the image.
 
 ### Getting Embedding of Train Data:
 
 Why train data??
-Since our model gives only embedding and not label, So we'll index (keep) train data and use it to get predictions. 
+Since our model gives only embedding and not label, So we'll index (keep) train data and use it to get predictions.
 
-code to get embedding of train data: 
+code to get embedding of train data:
 
 ```
 outputs = []
@@ -351,7 +352,7 @@ with torch.no_grad():
     for first, second, dis, label in tqdm(trainLoader):
         outputs.append(net(first.to(device)).cpu().detach().numpy())
         labels.append(label.numpy())
-        
+
 outputs = np.concatenate(outputs)
 labels = np.concatenate(labels)
 ```
@@ -359,7 +360,7 @@ labels = np.concatenate(labels)
 ## Why and How Annoy?
 
 Annoy uses a tree-based algorithm and splits data at every level in N-Dimensional
-space. It uses a straight line to split data. This made it fast to get the nearest samples from conventional Algos 
+space. It uses a straight line to split data. This made it fast to get the nearest samples from conventional Algos
 which compare every point pair. Annoy is not fully accurate from
 conventional algorithms but it is very fast. To improve accuracy annoy creates a
 forest [ K number of trees ] and gives an ensembled result.
@@ -375,8 +376,8 @@ forest.build(10)
 forest.save('/kaggle/working/forest.ann')
 ```
 
-Here we are building forest of 10 trees. The move trees we create the better and accuracy of nearest image will be. But I'll take more disk space when we save it and more memory when we load it. 
-Also, We are using `angular` as metric which tells Annoy to use angular distance to compare items. 
+Here we are building forest of 10 trees. The move trees we create the better and accuracy of nearest image will be. But I'll take more disk space when we save it and more memory when we load it.
+Also, We are using `angular` as metric which tells Annoy to use angular distance to compare items.
 ## Inferencing
 Now that we have out Annoy build we'll use it for predictions. below is a small function to get prediction for an image.
 
@@ -430,7 +431,7 @@ we'll get output:
 ![](/images/confusion.png "Confustion Matrix")
 
 ## Visualising Embeddings
-Visualising more than 3D is hard for humans. Our Model return embedding of size 64 which seems to be impossible to visualize currenly. There are few method which can be used to bring higher dimentions data into lower dimentions. One way is to use PCA (Principle Component Analysis). 
+Visualising more than 3D is hard for humans. Our Model return embedding of size 64 which seems to be impossible to visualize currenly. There are few method which can be used to bring higher dimentions data into lower dimentions. One way is to use PCA (Principle Component Analysis).
 
 ![](/images/visual.png "PCA Visual")
 

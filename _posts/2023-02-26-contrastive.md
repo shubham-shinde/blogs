@@ -6,7 +6,7 @@ title: Contrastive Loss on MNIST Dataset
 We are going to take a different way of learning. Here I'm presenting question
 answer based method in which I'll show the code first and ask questions about it. This is
 similar to real-world learning where we do something and keep asking ourselves questions
-to ourselves until we understand it properly.
+until we understand it properly.
 
 Here's the table of contents:
 
@@ -21,7 +21,7 @@ apart. It is regarded as an alternative to Cross-Entropy loss.
 
 The contrastive loss function computes the distance between pairs of examples in the embedding space and then applies a penalty if the distance is greater than a certain threshold. Specifically, for a given pair of examples, the contrastive loss function calculates the Euclidean distance between their embedding vectors. If the distance is below a certain threshold, a small loss is incurred; if it is above the threshold, a larger loss is incurred. The idea is to encourage the model to learn embeddings that make similar examples closer together and dissimilar examples further apart.
 
-![]({{ site.baseurl }}/images/contrastive_mnist_example.png "Contrastive MNIST Example")
+![]({{ site.baseurl }}/images/contrastive/contrastive_mnist_example.png "Contrastive MNIST Example")
 
 ## Why MNIST Data?
 
@@ -30,7 +30,7 @@ labelling i.e. zero to nine. Images are black and white with 28 * 28 fixed
 size. The simplisity of this dataset makes it ideal for learners to do image
 classification.
 
-![]({{ site.baseurl }}/images/mnist.webp "MNIST Example")
+![]({{ site.baseurl }}/images/contrastive/mnist.webp "MNIST Example")
 
 ## Basic Setup
 
@@ -83,7 +83,7 @@ data`.
 ```
 data = pd.read_csv('/kaggle/input/digit-recognizer/train.csv')
 val_count = 1000
-default_transform = transform=transforms.Compose([
+default_transform = transforms.Compose([
     transforms.ToPILImage(),
     transforms.ToTensor(),
     transforms.Normalize(0.5, 0.5)
@@ -428,12 +428,12 @@ sns.heatmap(conf_m, annot=True, fmt='g', cmap='coolwarm')
 ```
 we'll get output:
 
-![]({{ site.baseurl }}/images/confusion.png "Confustion Matrix")
+![]({{ site.baseurl }}/images/contrastive/confusion.png "Confustion Matrix")
 
 ## Visualising Embeddings
 Visualising more than 3D is hard for humans. Our Model return embedding of size 64 which seems to be impossible to visualize currenly. There are few method which can be used to bring higher dimentions data into lower dimentions. One way is to use PCA (Principle Component Analysis).
 
-![]({{ site.baseurl }}/images/visual.png "PCA Visual")
+![]({{ site.baseurl }}/images/contrastive/visual.png "PCA Visual")
 
 Above is PCA of train data in 3D. We can see that embeddings are saperated by labels which verify that our model is giving distance to non similar embeddings. To verify open [link](https://projector.tensorflow.org/?config=https://gist.githubusercontent.com/shubham-shinde/7e9d26e5dfb5325020ce00bc7799a25d/raw/730ccd5d7f70d248afd6c05182d8bf6d4be0439e/mnist_contrastive_loss_cosine_config.tsv) (in color by select labels)
 

@@ -12,3 +12,14 @@ At my ML blogging website, I believe that quality content is crucial. Therefore,
 
 I hope that my website will become a valuable resource for anyone interested in machine learning, whether you are a student, a researcher, a practitioner, or an industry professional. I invite you to explore my platform, read my articles, and engage with me through comments and feedback. Thank you for joining me on this exciting journey in the field of machine learning!
 
+
+Contact Details:
+
+    Mail: Shindes0321@gmail.com
+    Contact No.: +91 9839883416
+    Portfolio: https://shubham-shinde.github.io/
+    LinkedIn: https://www.linkedin.com/in/kaizen97/
+    Github: https://github.com/shubham-shinde
+    Kaggle: https://www.kaggle.com/kaizen97
+    Blogs: https://shubham-shinde.github.io/blogs
+

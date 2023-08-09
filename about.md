@@ -22,4 +22,3 @@ Contact Details:
     Github: https://github.com/shubham-shinde
     Kaggle: https://www.kaggle.com/kaizen97
     Blogs: https://shubham-shinde.github.io/blogs
-

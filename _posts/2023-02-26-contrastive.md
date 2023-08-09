@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Contrastive Loss on MNIST Dataset
+listing: Machine Learning Blogs
 ---
 
 We are going to take a different way of learning. Here I'm presenting question

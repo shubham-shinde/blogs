@@ -39,7 +39,7 @@ We won't be using many pre-built functions. As we are learners we'll
 build our own model and dataset class. We'll be using Pytorch. Also as
 Pytorch doesn't have a contrastive loss function we'll build it ourselves. let's start with basic imports
 
-```python
+``` python
 import torch
 import numpy as np
 import pandas as pd
@@ -81,14 +81,17 @@ the dataframe into two with 1000 records in the validation set and the rest in t
 using image transform to convert data into `PIL Image -> Torch Tensors -> Normalized
 data`.
 
-```
+``` python
+# load data from csv
 data = pd.read_csv('/kaggle/input/digit-recognizer/train.csv')
 val_count = 1000
+# common transformation for both val and train
 default_transform = transforms.Compose([
     transforms.ToPILImage(),
     transforms.ToTensor(),
     transforms.Normalize(0.5, 0.5)
 ])
+# split data into val and train
 dataset = MNISTDataset(data.iloc[:-val_count], default_transform)
 val_dataset = MNISTDataset(data.iloc[-val_count:], default_transform)
 ```
@@ -124,46 +127,62 @@ This implementation is used for Siamese Neural Networks that are trained with
 Contrastive Loss to learn a metric space where similar examples are closer to
 each other and dissimilar examples are further apart.;
 
-```
+``` python
 class MNISTDataset(Dataset):
     def __init__(self, data_df: pd.DataFrame, transform=None, is_test=False):
+        # method will run once when class object is created.
+        # method will create data at the time of object creation.
+        # this will save time of training
         super(MNISTDataset, self).__init__()
         dataset = []
         labels_positive = {}
         labels_negative = {}
         if is_test == False:
+            # for each label create a set of same label images.
             for i in list(data_df.label.unique()):
                 labels_positive[i] = data_df[data_df.label == i].to_numpy()
+            # for each label create a set of image of different label.
             for i in list(data_df.label.unique()):
                 labels_negative[i] = data_df[data_df.label != i].to_numpy()
 
         for i, row in tqdm(data_df.iterrows(), total=len(data_df)):
             data = row.to_numpy()
+            # if test then only image will be returned.
             if is_test:
                 label = -1
                 first = data.reshape(28, 28)
                 second = -1
                 dis = -1
             else:
+                # label and image of the index for each row in df
                 label = data[0]
                 first = data[1:].reshape(28, 28)
+                # probability of same label image == 0.5
                 if np.random.randint(0, 2) == 0:
+                    # randomly select same label image
                     second = labels_positive[label][
                         np.random.randint(0, len(labels_positive[label]))
                     ]
                 else:
+                    # randomly select different(negative) label 
                     second = labels_negative[label][
                         np.random.randint(0, len(labels_negative[label]))
                     ]
+                # cosine is 1 for same and 0 for different label
                 dis = 1.0 if second[0] == label else 0.0
+                # reshape image
                 second = second[1:].reshape(28, 28)
 
+            # apply transform on both images
             if transform is not None:
                 first = transform(first.astype(np.float32))
                 if second is not -1:
                     second = transform(second.astype(np.float32))
 
+            # append to dataset list. 
+            # this random list is created once and used in every epoch
             dataset.append((first, second, dis, label))
+        
         self.dataset = dataset
         self.transform = transform
         self.is_test = is_test
@@ -189,7 +208,9 @@ transfer to the GPU by allocating memory in pinned memory. The num_workers
 argument specifies the number of subprocesses to use for loading the data.
 
 Here is the code
-```
+``` python
+# create torch dataloader.
+# shuffle true for train data to randomly create batches
 trainLoader = DataLoader(
     dataset,
     batch_size=64,
@@ -209,7 +230,7 @@ valLoader = DataLoader(val_dataset,
 
 ## Model
 
-```
+``` python
 class Network(nn.Module):
     def __init__(self):
         super(Network, self).__init__()
@@ -235,10 +256,10 @@ class Network(nn.Module):
         )
 
     def forward(self, x):
-        x = self.conv1(x)
-        x = self.conv2(x)
-        x = x.view(x.size(0), -1)
-        x = self.linear1(x)
+        x = self.conv1(x) # x: d * 32 * 12 * 12
+        x = self.conv2(x) # x: d * 64 * 4  * 4 
+        x = x.view(x.size(0), -1) # x: d * (64*4*4)
+        x = self.linear1(x) # x: d * 64
         return x
 ```
 This code defines a neural network architecture for image classification using PyTorch.
@@ -253,15 +274,16 @@ The forward function defines how the input data flows through the network. First
 
 ## Our Loss Function
 
-```
+``` python
 class ContrastiveLoss(nn.Module):
-    def __init__(self, m=2):
+    def __init__(self):
         super(ContrastiveLoss, self).__init__()
-        self.m = m
         self.similarity = nn.CosineSimilarity(dim=-1, eps=1e-7)
 
     def forward(self, first, second, distance):
+        # use cosine similarity from torch to get score
         score = self.similarity(first, second)
+        # after cosine apply MSE between distance and score
         return nn.MSELoss()(score, distance)
 ```
 
@@ -273,17 +295,21 @@ The output of the forward function is a scalar loss value that measures how well
 
 ## Training Model
 
-```
+``` python
+# define optimizer
 optimizer = optim.Adam(net.parameters(), lr=0.001)
+# define loss function
 loss_function = ContrastiveLoss()
+# define learning rate scheduler
 scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=7, gamma=0.3)
 ```
 
 Here we create an optimizer and a learning rate scheduler
 
-```
+``` python
 lrs = []
 losses = []
+# torch training loop
 for epoch in range(50):
     epoch_loss = 0
     batches=0
@@ -300,7 +326,9 @@ for epoch in range(50):
         epoch_loss+=loss
         loss.backward()
         optimizer.step()
+    # append epoch loss for plotting
     losses.append(epoch_loss.cpu().detach().numpy()/batches)
+    # scheduler step at every epoch
     scheduler.step()
     print('epoch_loss', losses[-1])
 ```
@@ -345,15 +373,17 @@ Since our model gives only embedding and not label, So we'll index (keep) train 
 
 code to get embedding of train data:
 
-```
+``` python
 outputs = []
 labels = []
 net.eval()
+# loop over train data and get embedding for each image
 with torch.no_grad():
     for first, second, dis, label in tqdm(trainLoader):
         outputs.append(net(first.to(device)).cpu().detach().numpy())
         labels.append(label.numpy())
 
+# np.concatenate to convert list into np.array
 outputs = np.concatenate(outputs)
 labels = np.concatenate(labels)
 ```
@@ -367,8 +397,9 @@ conventional algorithms but it is very fast. To improve accuracy annoy creates a
 forest [ K number of trees ] and gives an ensembled result.
 
 code to index data in annoy:
-```
+``` python
 from annoy import AnnoyIndex
+# create an annoy forest, add train data and save
 forest = AnnoyIndex(outputs.shape[1], metric='angular')
 for i, item in tqdm(enumerate(outputs)):
     forest.add_item(i, item)
@@ -382,7 +413,7 @@ Also, We are using `angular` as metric which tells Annoy to use angular distance
 ## Inferencing
 Now that we have out Annoy build we'll use it for predictions. below is a small function to get prediction for an image.
 
-```
+``` python
 from scipy import stats
 def inferance(forest, forest_labels, image):
     net.eval()
@@ -390,7 +421,10 @@ def inferance(forest, forest_labels, image):
         test_outs = net(image.to(device))
     labels=[]
     for i in test_outs:
+        # get 10 nearest images for given image
         indexes = forest.get_nns_by_vector(i.cpu().detach().numpy(), 10)
+        # get mode label of the 10 images. 
+        # other methods can be used here
         labels.append(stats.mode(forest_labels[indexes])[0][0])
     return np.array(labels)
 ```
@@ -402,10 +436,11 @@ In above code we got embedding from model for the image and then got 10 nearesh 
 ## Getting Model Accuracy
 We'll use our inference method to get models accuracy on Eval data. below is the code
 
-```
+``` python
 acc = []
 count = 0
 y_eval, eval_results = [], []
+# for every val data get inference output and calculate accuracy
 for image, _, _, image_labels in tqdm(evalLoader):
     count+=1
     results = inferance(forest, labels, image)
@@ -419,10 +454,11 @@ For me output is `Eval Accuracy 0.9912109375`
 
 We'll also print confusion matrix for eval data. below is the code
 
-```
+``` python
 import seaborn as sns
 from sklearn.metrics import confusion_matrix
 
+# plot confusion metrix using sklearn.metrics.confusion_matrix
 conf_m = confusion_matrix(np.concatenate(y_eval), np.concatenate(eval_results))
 conf_m[[range(0, len(conf_m)), range(0, len(conf_m))]] = -10
 sns.heatmap(conf_m, annot=True, fmt='g', cmap='coolwarm')

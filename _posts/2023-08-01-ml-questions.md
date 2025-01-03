@@ -22,6 +22,7 @@ Here's the table of contents:
 1. Precision
 1. Recall
 1. F1 
+1. Why Harmonic Mean in F1
 1. ROC curve
 1. AUC-ROC
 1. L1 regularization (lasso)

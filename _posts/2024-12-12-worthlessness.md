@@ -1,11 +1,8 @@
 ---
 layout: post
-title: Worthlessness
+title: Worthlessness, A Silent Struggle
 listing: Generic
 ---
-
-
-### Worthlessness: A Silent Struggle
 
 In the quiet corners of our minds, where we often retreat to seek solace, there lurks a shadow many are hesitant to confront: the feeling of worthlessness. It’s a heavy, invisible weight that presses against our chests, whispering doubts into our ears and stealing the vibrancy from our lives. Despite its prevalence, worthlessness remains an enigma, cloaked in stigma and misunderstood by those who have never felt its grip.
 

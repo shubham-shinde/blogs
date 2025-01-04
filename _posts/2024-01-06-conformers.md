@@ -37,8 +37,12 @@ enhance efficiency by incorporating convolutional operations, making them better
 
 ## Architecture of Conformers
 
+{:refdef: style="text-align: center;"}
 ![Conformer Encoder Architecture]({{ site.baseurl }}/images/conformers/conformer_encoder.png "conformer_encoder")
+{: refdef}
+{:refdef: style="text-align: center;"}
 *Conformer Encoder Architecture*
+{: refdef}
 
 ```python
 class ConformerBlock(nn.Module):
@@ -78,7 +82,9 @@ class ConformerEncoder(nn.Module):
 
 
 ![Conformer Encoder Architecture]({{ site.baseurl }}/images/conformers/convolution_module.png "conformer_encoder")
+{:refdef: style="text-align: center;"}
 *Convolution Module*
+{: refdef}
 
 ```python
 class ConvolutionModule(nn.Module):
@@ -108,8 +114,12 @@ class ConvolutionModule(nn.Module):
 ```
 
 
+{:refdef: style="text-align: center;"}
 ![Conformer Encoder Architecture]({{ site.baseurl }}/images/conformers/feed_forward_module.png "conformer_encoder")
+{: refdef}
+{:refdef: style="text-align: center;"}
 *Feed Forward Module*
+{: refdef}
 
 ```python
 class Swish(nn.Module):
@@ -133,8 +143,12 @@ class FeedForwardModule(nn.Module):
 ```
 
 
+{:refdef: style="text-align: center;"}
 ![Conformer Encoder Architecture]({{ site.baseurl }}/images/conformers/multihead_self_attention_module.png "conformer_encoder")
+{: refdef}
+{:refdef: style="text-align: center;"}
 *Multi-Headed Self-Attention Module*
+{: refdef}
 
 ```python
 class MultiHeadSelfAttentionModule(nn.Module):

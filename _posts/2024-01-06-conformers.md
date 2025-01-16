@@ -46,7 +46,14 @@ enhance efficiency by incorporating convolutional operations, making them better
 
 ```python
 class ConformerBlock(nn.Module):
-    def __init__(self, d_model, num_heads, ff_expansion_factor=4, conv_kernel_size=31, dropout=0.1):
+    def __init__(
+        self,
+        d_model,
+        num_heads,
+        ff_expansion_factor=4,
+        conv_kernel_size=31,
+        dropout=0.1,
+    ):
         super().__init__()
         self.ffm1 = FeedForwardModule(d_model, ff_expansion_factor, dropout)
         self.mha = MultiHeadSelfAttentionModule(d_model, num_heads, dropout)
@@ -63,13 +70,26 @@ class ConformerBlock(nn.Module):
 
 
 class ConformerEncoder(nn.Module):
-    def __init__(self, input_dim, num_layers, d_model, num_heads, ff_expansion_factor=4, conv_kernel_size=31, dropout=0.1):
+    def __init__(
+        self,
+        input_dim,
+        num_layers,
+        d_model,
+        num_heads,
+        ff_expansion_factor=4,
+        conv_kernel_size=31,
+        dropout=0.1,
+    ):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, d_model)
-        self.layers = nn.ModuleList([
-            ConformerBlock(d_model, num_heads, ff_expansion_factor, conv_kernel_size, dropout)
-            for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                ConformerBlock(
+                    d_model, num_heads, ff_expansion_factor, conv_kernel_size, dropout
+                )
+                for _ in range(num_layers)
+            ]
+        )
         self.layer_norm = nn.LayerNorm(d_model)
 
     def forward(self, x):
@@ -93,7 +113,13 @@ class ConvolutionModule(nn.Module):
         self.layer_norm = nn.LayerNorm(d_model)
         self.pointwise_conv1 = nn.Conv1d(d_model, 2 * d_model, kernel_size=1)
         self.glu = nn.GLU(dim=1)
-        self.depthwise_conv = nn.Conv1d(d_model, d_model, kernel_size=kernel_size, groups=d_model, padding=kernel_size // 2)
+        self.depthwise_conv = nn.Conv1d(
+            d_model,
+            d_model,
+            kernel_size=kernel_size,
+            groups=d_model,
+            padding=kernel_size // 2,
+        )
         self.batch_norm = nn.BatchNorm1d(d_model)
         self.pointwise_conv2 = nn.Conv1d(d_model, d_model, kernel_size=1)
         self.dropout = nn.Dropout(dropout)

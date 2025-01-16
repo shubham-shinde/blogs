@@ -3,9 +3,11 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+
 class Swish(nn.Module):
     def forward(self, x):
         return x * torch.sigmoid(x)
+
 
 class FeedForwardModule(nn.Module):
     def __init__(self, d_model, ff_expansion_factor=4, dropout=0.1):
@@ -22,6 +24,7 @@ class FeedForwardModule(nn.Module):
         out = self.fc2(out)
         return self.dropout(out)
 
+
 class MultiHeadSelfAttentionModule(nn.Module):
     def __init__(self, d_model, num_heads, dropout=0.1):
         super().__init__()
@@ -35,13 +38,20 @@ class MultiHeadSelfAttentionModule(nn.Module):
         out = self.dropout(out)
         return self.layer_norm(residual + out)
 
+
 class ConvolutionModule(nn.Module):
     def __init__(self, d_model, kernel_size=31, dropout=0.1):
         super().__init__()
         self.layer_norm = nn.LayerNorm(d_model)
         self.pointwise_conv1 = nn.Conv1d(d_model, 2 * d_model, kernel_size=1)
         self.glu = nn.GLU(dim=1)
-        self.depthwise_conv = nn.Conv1d(d_model, d_model, kernel_size=kernel_size, groups=d_model, padding=kernel_size // 2)
+        self.depthwise_conv = nn.Conv1d(
+            d_model,
+            d_model,
+            kernel_size=kernel_size,
+            groups=d_model,
+            padding=kernel_size // 2,
+        )
         self.batch_norm = nn.BatchNorm1d(d_model)
         self.pointwise_conv2 = nn.Conv1d(d_model, d_model, kernel_size=1)
         self.dropout = nn.Dropout(dropout)
@@ -60,8 +70,16 @@ class ConvolutionModule(nn.Module):
         x = x.transpose(1, 2)  # Shape: (batch_size, seq_len, d_model)
         return residual + x
 
+
 class ConformerBlock(nn.Module):
-    def __init__(self, d_model, num_heads, ff_expansion_factor=4, conv_kernel_size=31, dropout=0.1):
+    def __init__(
+        self,
+        d_model,
+        num_heads,
+        ff_expansion_factor=4,
+        conv_kernel_size=31,
+        dropout=0.1,
+    ):
         super().__init__()
         self.ffm1 = FeedForwardModule(d_model, ff_expansion_factor, dropout)
         self.mha = MultiHeadSelfAttentionModule(d_model, num_heads, dropout)
@@ -76,14 +94,28 @@ class ConformerBlock(nn.Module):
         x = x + 0.5 * self.ffm2(x)
         return self.layer_norm(x)
 
+
 class ConformerEncoder(nn.Module):
-    def __init__(self, input_dim, num_layers, d_model, num_heads, ff_expansion_factor=4, conv_kernel_size=31, dropout=0.1):
+    def __init__(
+        self,
+        input_dim,
+        num_layers,
+        d_model,
+        num_heads,
+        ff_expansion_factor=4,
+        conv_kernel_size=31,
+        dropout=0.1,
+    ):
         super().__init__()
         self.input_proj = nn.Linear(input_dim, d_model)
-        self.layers = nn.ModuleList([
-            ConformerBlock(d_model, num_heads, ff_expansion_factor, conv_kernel_size, dropout)
-            for _ in range(num_layers)
-        ])
+        self.layers = nn.ModuleList(
+            [
+                ConformerBlock(
+                    d_model, num_heads, ff_expansion_factor, conv_kernel_size, dropout
+                )
+                for _ in range(num_layers)
+            ]
+        )
         self.layer_norm = nn.LayerNorm(d_model)
 
     def forward(self, x):
@@ -92,6 +124,7 @@ class ConformerEncoder(nn.Module):
         for layer in self.layers:
             x = layer(x)
         return self.layer_norm(x)
+
 
 # Example usage
 if __name__ == "__main__":

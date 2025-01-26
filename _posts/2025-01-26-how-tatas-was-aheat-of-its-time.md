@@ -8,12 +8,12 @@ For thousands of years, India was a highly industrialized country, known for its
 
 Jamsetji Tata’s vision extended beyond business, as he laid the foundation for India’s industrial development by establishing the Tata Group. His dream was of a prosperous, industrialized India, built on the three key pillars of economic progress: steel, electric power, and technical education combined with research. He focused on creating institutions and industries that would fuel the nation’s growth, ensuring that industrialization would play a pivotal role in shaping India’s future.
 
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/images/tatas/jamsetji-tata.jpg "Jemshedji Tata")
+{: refdef}
+
 The Tata Group's visionary approach was ahead of its time, establishing initiatives that shaped the future of the nation. Their forward-thinking mindset, focused on the collective good, demonstrated how investing in the future could create lasting change. By prioritizing long-term goals over short-term gains, they paved the way for remarkable developments that continue to benefit the country. Each initiative reflected a commitment to progress and prosperity for all. The lessons from Tata's foresight offer valuable insights into how impactful and transformative thinking can shape an entire nation.
 
-
-<!-- {:refdef: style="text-align: center;"}
-![]({{ site.baseurl }}/images/system/pc2.jpg "computer vs laptop meme")
-{: refdef} -->
 
 Here's the table of contents:
 
@@ -37,11 +37,19 @@ JRD Tata, continuing his legacy, expanded the Tata Group into diverse sectors su
 
 Jamsetji Tata envisioned a self-reliant India, recognizing that steel production was fundamental to the country's industrialization. His meticulous planning included studying global steel industries, particularly those in the U.S. and Europe. His son, Dorabji Tata, carried forward this dream, collaborating with global experts like American geologist Charles Page Perin to ensure technical expertise. After extensive exploration, they chose Sakchi (later Jamshedpur) in present-day Jharkhand due to its proximity to key resources such as iron ore from Odisha and coal from Jharia. The nearby Subarnarekha and Kharkai rivers provided a steady water supply, while the Bengal-Nagpur Railway ensured easy transportation. Public shares were issued, and contributions from Indian industrialists, zamindars, and patriotic citizens helped support the project, with the Swadeshi movement further encouraging Indians to back indigenous industries.
 
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/images/tatas/tata-steel.jpg "Tata Steel")
+{: refdef}
+
 The Tatas recruited skilled personnel from abroad, including metallurgists and engineers from the U.S. and Europe, while also developing training programs for local workers to build a competent indigenous workforce. They undertook the immense task of building infrastructure from scratch, developing roads, railways, and housing colonies for employees. Jamshedpur was designed as a model industrial city, offering modern amenities like schools, hospitals, and recreational facilities to ensure a high standard of living for its workers. Even in its early stages, Tata Steel focused on sustainability, adopting practices like efficient use of raw materials and waste recycling. Over time, the company became a pioneer in environmentally friendly technologies, such as energy-efficient blast furnaces and waste heat recovery systems. Under J.R.D. Tata's leadership, Tata Steel introduced progressive social welfare measures, including an eight-hour workday, maternity leave, and provident funds, long before they became legal requirements in India.
 
 
 # Creation of Institutions
 Jamsetji Tata believed that India’s future would depend on its ability to research, innovate, and develop in scientific knowledge, industrial capacity, and social welfare, especially after independence. He saw education as the key to uplifting the country from colonial subjugation and creating a brighter future for its people. The institutions he founded, such as the Indian Institute of Science (IISc) in 1909, were designed to serve as centers of excellence in education and research, producing a new generation of leaders, scientists, and social reformers to drive national progress. His vision continued to shape Tata institutions even after his death, under the leadership of his successors, such as his son Sir Dorabji Tata and the renowned industrialist J.R.D. Tata.
+
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/images/tatas/IISc.jpg "IISC Bengaluru")
+{: refdef}
 
 The Tata Group also played a pivotal role in addressing India’s social and scientific challenges through the establishment of pioneering institutions. The Tata Institute of Social Sciences (TISS), founded in 1936 by Dr. Clifford Manshardt under Sir Dorabji Tata's guidance, was created to address India’s social issues, especially the welfare of marginalized communities. In 1945, the Tata Institute of Fundamental Research (TIFR) was established under J.R.D. Tata's patronage and the leadership of renowned physicist Dr. Homi J. Bhabha. TIFR was crucial in advancing India’s nuclear program and scientific research. These visionary initiatives laid the groundwork for India's future development and progress.
 
@@ -64,7 +72,12 @@ Designed by British architect S.B. N. Halls, the Taj Mahal Palace Hotel blended 
 
 The journey of Tata Airlines began with J.R.D. Tata’s fascination with aviation. In the 1930s, J.R.D. Tata, an aviator himself, recognized the potential of air transport for India’s growth and connectivity. The first significant step toward creating Tata Airlines was when J.R.D. Tata began operating an airmail service in India. Tata expanded his aviation services to include passenger flights, which led to the establishment of Tata Air Services.
 
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/images/tatas/jrd-tata.jpeg "JRD Tata")
+{: refdef}
+
 By 1938, Tata Air Services had evolved into a full-fledged airline and was renamed Tata Airlines. In 1953, Air India was nationalized when the Indian government passed the Air Corporations Act, taking over the operations of Tata Airlines (which had become Air India) and converting it into a state-owned enterprise. J.R.D. Tata, the founder of the airline, played a pivotal role in its early success but was disheartened by the government’s move, as it meant the loss of control over the airline he had built. Despite his reservations, J.R.D. Tata continued to serve as Air India’s chairman for several years.
+
 
 Over time, the airline faced challenges such as financial mismanagement, competition, and changes in leadership. Today, under Tata Group's ownership once again, Air India is focusing on modernization, revitalizing its fleet, improving customer service, and expanding its global presence to reclaim its legacy as a leading international airline.
 
@@ -83,6 +96,10 @@ The vision of philanthropy within the Tata family began with the group's founder
 # Pioneering Innovations 
 
 J.R.D. Tata made significant investments in hydroelectric power generation through Tata Electric Companies at a time when electricity was scarce in India. This initiative provided clean energy to industries and homes, fostering growth in Mumbai and surrounding areas. In the late 20th and early 21st centuries, the Tata Group began acquiring global companies like Tetley, Corus, and Jaguar Land Rover—long before globalization became a trend for Indian companies. These acquisitions helped establish Tata as a global player and brought international recognition to Indian enterprises.
+
+{:refdef: style="text-align: center;"}
+![]({{ site.baseurl }}/images/tatas/tata-moters.jpg "Tata Moters")
+{: refdef}
 
 J.R.D. Tata played a crucial role in India's development by expanding into multiple industries, bringing technology and knowledge to the country. He supported data-driven planning and built companies that provided statistically backed insights to both the Tata Group and the government. As an advocate for population control, he supported family planning initiatives to address India's growing population challenge. He also aimed to build a manufacturing hub for avionics in India, but his plans were hindered by a lack of support under British rule. In 1945, Tata Engineering and Locomotive Co. Ltd. (now Tata Motors) was established, initially manufacturing locomotives and heavy engineering products. The company later expanded to include commercial vehicles, such as trucks and buses.
 

@@ -3,9 +3,9 @@ layout: default
 ---
 
 <div class="posts">
-  {% assign lists = "Machine Learning Blogs,System Blogs" | split: "," %}
+  {% assign lists = "Machine Learning Blogs,General,System Blogs" | split: "," %}
   {% for list in lists %}
-    <h1>{{ list }}:</h1>
+    <h1 style="text-transform: uppercase;">{{ list }}</h1>
     {% for post in site.posts %}
       {% if post.listing == list %}
         <article class="post">
